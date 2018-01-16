@@ -1,0 +1,10 @@
+server.port: 9090
+spring:
+    datasource:
+        driverClassName: org.postgresql.Driver
+        password: gar
+        url: jdbc:postgresql://18.194.206.255:5432/postgres
+        username: GAR
+    jpa:
+        database: POSTGRESQL
+        show-sql: true
