@@ -9,7 +9,6 @@ import com.sarbini.resource.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-
 	Optional<User> findOneByLogin(String login);
 
 }

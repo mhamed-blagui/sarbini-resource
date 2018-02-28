@@ -18,7 +18,7 @@ public class UserResource {
     public String createUser(@RequestParam(value="login", defaultValue="admin") String login) {
 		UserDTO userDTO = new UserDTO();
 		userDTO.setLogin(login);
-		userService.createUser(userDTO );
+		userService.createUser(userDTO);
         return "OK";
     }
 }
