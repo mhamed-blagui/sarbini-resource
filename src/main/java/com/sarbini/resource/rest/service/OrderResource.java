@@ -22,12 +22,12 @@ public class OrderResource {
 	private OrderService orderService;
 	
 	@RequestMapping(value = "/add",method = GET)
-	public void addNewState(@RequestParam(value = "name") String name,
+	public void addNewOrder(@RequestParam(value = "name") String name,
 			@RequestParam(value = "description") String description) {
 		LOGGER.info("Going to add new order : " + name);
 		try {
 			OrderDTO orderDTO = null;
-			orderService.createOrder(orderDTO );
+			orderService.createOrder(orderDTO);
 		} catch (Exception e) {
 			LOGGER.error("Error occured in create order : ", e);
 		}
