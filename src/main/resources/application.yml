@@ -10,3 +10,14 @@ spring:
                   ddl-auto: update
         database: POSTGRESQL
         show-sql: true
+    mail: 
+         host: smtp.gmail.com
+         username: xxx@gmail.com
+         password: xxx
+         port: 587
+         properties: 
+                     mail: 
+                          smtp: 
+                               connectiontimeout: 5000
+                               timeout: 3000
+                               writetimeout: 5000

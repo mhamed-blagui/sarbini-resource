@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 import com.sarbini.resource.domain.Order;
 import com.sarbini.resource.domain.OrderHistory;
 import com.sarbini.resource.domain.User;
-import com.sarbini.resource.dto.OrderDTO;
 import com.sarbini.resource.exception.TechnicalException;
+import com.sarbini.resource.model.NotificationData;
+import com.sarbini.resource.model.OrderData;
 import com.sarbini.resource.repository.OrderHistoryRepository;
 import com.sarbini.resource.repository.OrderRepository;
+import com.sarbini.resource.service.NotificationService;
 import com.sarbini.resource.service.OrderService;
 
 @Component
@@ -27,8 +29,11 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderHistoryRepository orderHistoryRepository;
 
+	@Autowired
+	private NotificationService notificationService;
+
 	@Override
-	public void createOrder(OrderDTO orderDTO) {
+	public void createOrder(OrderData orderDTO) {
 		// TODO Auto-generated method stub
 	}
 
@@ -39,8 +44,11 @@ public class OrderServiceImpl implements OrderService {
 			order.setDeliver(deliver);
 			orderRepository.save(order);
 			addOrderHistory(order.getCurrentState().toString());
+			NotificationData notificationData = null;
+			notificationService.sendEmail(notificationData);
+			notificationService.sendSms(notificationData);
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			LOGGER.error("Error in accepting order :", e);
 			throw new TechnicalException(e.getMessage(), null);
 		}
 		return "SUCCESS";

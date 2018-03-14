@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.sarbini.resource.domain.Authority;
 import com.sarbini.resource.domain.User;
-import com.sarbini.resource.dto.UserDTO;
+import com.sarbini.resource.model.UserData;
 import com.sarbini.resource.repository.AuthorityRepository;
 import com.sarbini.resource.repository.UserRepository;
 import com.sarbini.resource.service.UserService;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	private PasswordEncoder passwordEncoder;
 	
 	@Override
-	public User createUser(UserDTO userDTO) {
+	public User createUser(UserData userDTO) {
 		User user = new User();
         user.setLogin(userDTO.getLogin());
         user.setFirstName(userDTO.getFirstName());

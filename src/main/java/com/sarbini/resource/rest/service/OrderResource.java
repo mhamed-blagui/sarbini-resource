@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sarbini.resource.dto.OrderDTO;
+import com.sarbini.resource.model.OrderData;
 import com.sarbini.resource.service.OrderService;
 
 @RestController
@@ -26,7 +26,7 @@ public class OrderResource {
 			@RequestParam(value = "description") String description) {
 		LOGGER.info("Going to add new order : " + name);
 		try {
-			OrderDTO orderDTO = null;
+			OrderData orderDTO = null;
 			orderService.createOrder(orderDTO);
 		} catch (Exception e) {
 			LOGGER.error("Error occured in create order : ", e);

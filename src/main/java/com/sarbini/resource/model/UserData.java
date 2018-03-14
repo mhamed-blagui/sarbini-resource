@@ -1,4 +1,4 @@
-package com.sarbini.resource.dto;
+package com.sarbini.resource.model;
 
 import java.time.Instant;
 import java.util.Set;
@@ -22,7 +22,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class UserDTO {
+public class UserData {
 
     private Long id;
 
@@ -59,11 +59,11 @@ public class UserDTO {
 
     private Set<String> authorities;
 
-    public UserDTO() {
+    public UserData() {
         // Empty constructor needed for Jackson.
     }
 
-    public UserDTO(User user) {
+    public UserData(User user) {
         this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
             user.getEmail(), user.isActivated(), user.getImageUrl(), user.getLangKey(),
             user.getCreatedBy(), user.getCreatedDate(), user.getLastModifiedBy(), user.getLastModifiedDate(),
@@ -71,7 +71,7 @@ public class UserDTO {
                 .collect(Collectors.toSet()));
     }
 
-    public UserDTO(Long id, String login, String firstName, String lastName,
+    public UserData(Long id, String login, String firstName, String lastName,
         String email, boolean activated, String imageUrl, String langKey,
         String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate,
         Set<String> authorities) {
