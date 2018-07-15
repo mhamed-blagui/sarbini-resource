@@ -2,6 +2,7 @@ package com.sarbini.resource.service.impl;
 
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
         if (userDTO.getAuthorities() != null) {
             Set<Authority> authorities = new HashSet<>();
             userDTO.getAuthorities().forEach(
-                authority -> authorities.add(authorityRepository.findOne(authority))
+                authority -> authorities.add(authorityRepository.findById(authority).get())
             );
             user.setAuthorities(authorities);
         }
@@ -69,4 +70,22 @@ public class UserServiceImpl implements UserService {
             log.debug("Deleted User: {}", user);
         });
     }
+
+	@Override
+	public List<UserData> findAllUsers() {
+		List<User> allUsers = userRepository.findAll();
+		return null;
+	}
+
+	@Override
+	public UserData findUserById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isUserExist(UserData user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

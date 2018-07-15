@@ -13,4 +13,5 @@ public class NotificationData {
 	private String subject;
 	private String[] copyList;
 	private String phoneNumber;
+	/* */
 }

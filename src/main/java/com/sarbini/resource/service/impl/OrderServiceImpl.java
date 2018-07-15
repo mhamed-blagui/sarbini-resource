@@ -1,6 +1,7 @@
 package com.sarbini.resource.service.impl;
 
 import java.util.Calendar;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +41,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public String acceptOrder(Long orderPid, User deliver) throws TechnicalException {
 		try {
-			Order order = orderRepository.findOne(orderPid);
-			order.setDeliver(deliver);
-			orderRepository.save(order);
-			addOrderHistory(order.getCurrentState().toString());
+			Optional<Order> order = orderRepository.findById(orderPid);
+			order.get().setDeliver(deliver);
+			orderRepository.save(order.get());
+			addOrderHistory(order.get().getCurrentState().toString());
 			NotificationData notificationData = null;
 			notificationService.sendEmail(notificationData);
 			notificationService.sendSms(notificationData);
