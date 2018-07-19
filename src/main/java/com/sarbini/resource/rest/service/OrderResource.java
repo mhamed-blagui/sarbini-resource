@@ -2,9 +2,13 @@ package com.sarbini.resource.rest.service;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,13 +17,23 @@ import com.sarbini.resource.model.OrderData;
 import com.sarbini.resource.service.OrderService;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api")
 public class OrderResource {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(OrderResource.class);
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@RequestMapping(value = "/order/", method = GET)
+	public ResponseEntity<List<OrderData>> listAllOrders() {
+		List<OrderData> orders = orderService.findAllOrders();
+		if (orders.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			// You many decide to return HttpStatus.NOT_FOUND
+		}
+		return new ResponseEntity<List<OrderData>>(orders, HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/add",method = GET)
 	public void addNewOrder(@RequestParam(value = "name") String name,

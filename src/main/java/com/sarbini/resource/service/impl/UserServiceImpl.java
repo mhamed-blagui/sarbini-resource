@@ -1,17 +1,20 @@
 package com.sarbini.resource.service.impl;
 
 import java.time.Instant;
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+=======
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+>>>>>>> a6b70b90701afdd37858507902f103a21c201c73
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.sarbini.resource.domain.Authority;
 import com.sarbini.resource.domain.User;
 import com.sarbini.resource.model.UserData;
 import com.sarbini.resource.repository.AuthorityRepository;
@@ -19,7 +22,7 @@ import com.sarbini.resource.repository.UserRepository;
 import com.sarbini.resource.service.UserService;
 import com.sarbini.resource.util.RandomUtil;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 
 	private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -30,8 +33,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private AuthorityRepository authorityRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public User createUser(UserData userDTO) {
@@ -40,6 +43,23 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
+<<<<<<< HEAD
+//        user.setImageUrl(userDTO.getImageUrl());
+//        if (userDTO.getLangKey() == null) {
+//            user.setLangKey("en"); // default language
+//        } else {
+//            user.setLangKey(userDTO.getLangKey());
+//        }
+//        if (userDTO.getAuthorities() != null) {
+//            Set<Authority> authorities = new HashSet<>();
+//            userDTO.getAuthorities().forEach(
+//                authority -> authorities.add(authorityRepository.findById(authority).get())
+//            );
+//            user.setAuthorities(authorities);
+//        }
+//        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+        user.setPassword("aaa");
+=======
         user.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() == null) {
             user.setLangKey("en"); // default language
@@ -55,6 +75,7 @@ public class UserServiceImpl implements UserService {
         }
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setPassword(encryptedPassword);
+>>>>>>> a6b70b90701afdd37858507902f103a21c201c73
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);
@@ -72,6 +93,27 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
+<<<<<<< HEAD
+	public UserData findUserById(long id) {
+		UserData userData = null;
+		if(userRepository.findById(id).isPresent()){
+			userData = new UserData();
+			userData.buildUserData(userRepository.findById(id).get());
+		}
+		return userData;
+	}
+
+	@Override
+	public List<UserData> findAllUsers() {
+		List<UserData> allUsersData = new ArrayList<>();
+		List<User> allUsers = userRepository.findAll();
+		allUsers.forEach(user -> {
+			UserData userData = new UserData();
+			userData.buildUserData(user);
+			allUsersData.add(userData);
+		});
+		return allUsersData;
+=======
 	public List<UserData> findAllUsers() {
 		List<User> allUsers = userRepository.findAll();
 		return null;
@@ -81,11 +123,16 @@ public class UserServiceImpl implements UserService {
 	public UserData findUserById(long id) {
 		// TODO Auto-generated method stub
 		return null;
+>>>>>>> a6b70b90701afdd37858507902f103a21c201c73
 	}
 
 	@Override
 	public boolean isUserExist(UserData user) {
+<<<<<<< HEAD
+		return userRepository.findUserByLogin(user.getLogin()).isPresent();
+=======
 		// TODO Auto-generated method stub
 		return false;
+>>>>>>> a6b70b90701afdd37858507902f103a21c201c73
 	}
 }

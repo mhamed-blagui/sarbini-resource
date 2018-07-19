@@ -8,12 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.sarbini.resource.model.NotificationData;
 import com.sarbini.resource.service.NotificationService;
 
-@Component
+@Service
 public class NotificationServiceImpl implements NotificationService {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(NotificationServiceImpl.class);

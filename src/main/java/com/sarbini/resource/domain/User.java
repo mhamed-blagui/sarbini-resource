@@ -18,18 +18,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_USER", schema = "SARBINI")
+@Table(name = "SAR_USER", schema = "SARBINI_APP")
 @Getter
 @Setter
-public class User extends AbstractAuditingEntity implements Serializable {
+public class User implements Serializable {
 
 	/**
 	 * 
@@ -60,7 +58,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 	@Column(name = "last_name", length = 50)
 	private String lastName;
 
-	@Email
 	@Size(min = 5, max = 100)
 	@Column(length = 100, unique = true)
 	private String email;
@@ -92,7 +89,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "GAR_USER_AUTHORITY", joinColumns = {
+	@JoinTable(name = "SAR_USER_AUTHORITY", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
 	private Set<Authority> authorities = new HashSet<>();

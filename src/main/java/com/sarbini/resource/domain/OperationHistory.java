@@ -15,38 +15,40 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.sarbini.resource.enums.OrderStateEnum;
+import com.sarbini.resource.enums.OperationNameEnum;
+import com.sarbini.resource.enums.OperationStatusEnum;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name = "SAR_ORDER_HISTORY", schema = "SARBINI_APP")
 @Getter
 @Setter
-public class OrderHistory implements Serializable {
+@Entity
+@Table(name = "SAR_OPERATION_HISTORY")
+public class OperationHistory implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8668775924761071232L;
+	private static final long serialVersionUID = 3353364675600962502L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
 	@SequenceGenerator(name = "sequenceGenerator")
 	private Long id;
 	
-	@Column(name = "ORDER_ID")
-	private String orderId;
-	
-	@Column(name ="STATE")
 	@Enumerated(EnumType.STRING)
-	private OrderStateEnum state;
+	@Column(name = "NAME")
+	private OperationNameEnum operationName;
 	
-	@Column(name = "DESCRIPTION")
-	private String description;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "STATUS")
+	private OperationStatusEnum operationStatus;
 	
 	@Column(name = "CREATION_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
+	
+	@Column(name = "DESCRIPTION")
+	private String description;
 }
