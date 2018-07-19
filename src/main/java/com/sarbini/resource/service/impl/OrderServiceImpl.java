@@ -2,11 +2,8 @@ package com.sarbini.resource.service.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-<<<<<<< HEAD
 import java.util.List;
-=======
 import java.util.Optional;
->>>>>>> a6b70b90701afdd37858507902f103a21c201c73
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,17 +44,14 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public String acceptOrder(Long orderPid, User deliver) throws TechnicalException {
 		try {
-<<<<<<< HEAD
 			Order order = orderRepository.findById(orderPid).get();
 			order.setDeliver(deliver);
 			orderRepository.save(order);
 			addOrderHistory(order.getCurrentState());
-=======
-			Optional<Order> order = orderRepository.findById(orderPid);
-			order.get().setDeliver(deliver);
-			orderRepository.save(order.get());
-			addOrderHistory(order.get().getCurrentState().toString());
->>>>>>> a6b70b90701afdd37858507902f103a21c201c73
+			Optional<Order> order1 = orderRepository.findById(orderPid);
+			order1.get().setDeliver(deliver);
+			orderRepository.save(order1.get());
+			addOrderHistory(order1.get().getCurrentState());
 			NotificationData notificationData = null;
 			notificationService.sendEmail(notificationData);
 			notificationService.sendSms(notificationData);

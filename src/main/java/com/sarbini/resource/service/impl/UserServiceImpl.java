@@ -1,14 +1,7 @@
 package com.sarbini.resource.service.impl;
 
-import java.time.Instant;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
->>>>>>> a6b70b90701afdd37858507902f103a21c201c73
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +13,6 @@ import com.sarbini.resource.model.UserData;
 import com.sarbini.resource.repository.AuthorityRepository;
 import com.sarbini.resource.repository.UserRepository;
 import com.sarbini.resource.service.UserService;
-import com.sarbini.resource.util.RandomUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,7 +35,6 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-<<<<<<< HEAD
 //        user.setImageUrl(userDTO.getImageUrl());
 //        if (userDTO.getLangKey() == null) {
 //            user.setLangKey("en"); // default language
@@ -58,26 +49,6 @@ public class UserServiceImpl implements UserService {
 //            user.setAuthorities(authorities);
 //        }
 //        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setPassword("aaa");
-=======
-        user.setImageUrl(userDTO.getImageUrl());
-        if (userDTO.getLangKey() == null) {
-            user.setLangKey("en"); // default language
-        } else {
-            user.setLangKey(userDTO.getLangKey());
-        }
-        if (userDTO.getAuthorities() != null) {
-            Set<Authority> authorities = new HashSet<>();
-            userDTO.getAuthorities().forEach(
-                authority -> authorities.add(authorityRepository.findById(authority).get())
-            );
-            user.setAuthorities(authorities);
-        }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setPassword(encryptedPassword);
->>>>>>> a6b70b90701afdd37858507902f103a21c201c73
-        user.setResetKey(RandomUtil.generateResetKey());
-        user.setResetDate(Instant.now());
         user.setActivated(true);
         userRepository.save(user);
         log.debug("Created Information for User: {}", user);
@@ -93,7 +64,6 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-<<<<<<< HEAD
 	public UserData findUserById(long id) {
 		UserData userData = null;
 		if(userRepository.findById(id).isPresent()){
@@ -113,26 +83,11 @@ public class UserServiceImpl implements UserService {
 			allUsersData.add(userData);
 		});
 		return allUsersData;
-=======
-	public List<UserData> findAllUsers() {
-		List<User> allUsers = userRepository.findAll();
-		return null;
 	}
 
-	@Override
-	public UserData findUserById(long id) {
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> a6b70b90701afdd37858507902f103a21c201c73
-	}
 
 	@Override
 	public boolean isUserExist(UserData user) {
-<<<<<<< HEAD
 		return userRepository.findUserByLogin(user.getLogin()).isPresent();
-=======
-		// TODO Auto-generated method stub
-		return false;
->>>>>>> a6b70b90701afdd37858507902f103a21c201c73
 	}
 }
