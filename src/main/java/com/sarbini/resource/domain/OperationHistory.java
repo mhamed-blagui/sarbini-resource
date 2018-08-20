@@ -24,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "SAR_OPERATION_HISTORY")
+@Table(name = "SAR_OPERATION_HISTORY", schema = "SARBINI")
 public class OperationHistory implements Serializable {
 
 	/**

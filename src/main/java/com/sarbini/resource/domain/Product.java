@@ -17,7 +17,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_PRODUCT", schema = "SARBINI_APP")
+@Table(name = "SAR_PRODUCT", schema = "SARBINI")
 @Getter
 @Setter
 public class Product implements Serializable {

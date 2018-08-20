@@ -1,14 +1,14 @@
-server.port: 9090
+server.port: 9092
 spring:
     datasource:
-          driverClassName: oracle.jdbc.OracleDriver
-          password: sarbini_app
-          url: jdbc:oracle:thin:@localhost:1521/XE
-          username: sarbini_app
+          driverClassName: org.h2.Driver
+          password: SAR_APP
+          url: jdbc:h2:tcp://172.26.5.91:9091/mem:testdb
+          username: SAR_APP
     jpa:
-        hibernate: 
-                  ddl-auto: update
         show-sql: true
+        hibernate: 
+                  ddl-auto: none
     mail: 
          host: smtp.gmail.com
          username: xxx@gmail.com

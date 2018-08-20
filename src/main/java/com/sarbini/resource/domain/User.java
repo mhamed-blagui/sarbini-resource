@@ -1,7 +1,6 @@
 package com.sarbini.resource.domain;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_USER", schema = "SARBINI_APP")
+@Table(name = "SAR_USER", schema = "SARBINI")
 @Getter
 @Setter
 public class User implements Serializable {
@@ -35,27 +34,25 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 4654003334858315829L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-	@SequenceGenerator(name = "sequenceGenerator")
+	@SequenceGenerator(name = "sequenceGenerator", schema = "SARBINI", sequenceName = "USER_SEQ"
+			+ "", initialValue = 5, allocationSize = 3)
+	@GeneratedValue(generator = "sequenceGenerator")
 	private Long id;
 
 	@NotNull
 	@Size(min = 1, max = 50)
 	@Column(length = 50, unique = true, nullable = false)
-	private String login;
+	private String username;
 
 	@JsonIgnore
 	@NotNull
-	@Size(min = 60, max = 60)
-	@Column(name = "password_hash", length = 60)
+	@Column(name = "PASSWORD")
 	private String password;
 
-	@Size(max = 50)
-	@Column(name = "first_name", length = 50)
+	@Column(name = "FIRST_NAME")
 	private String firstName;
 
-	@Size(max = 50)
-	@Column(name = "last_name", length = 50)
+	@Column(name = "LAST_NAME")
 	private String lastName;
 
 	@Size(min = 5, max = 100)
@@ -66,30 +63,9 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private boolean activated = false;
 
-	@Size(min = 2, max = 5)
-	@Column(name = "lang_key", length = 5)
-	private String langKey;
-
-	@Size(max = 256)
-	@Column(name = "image_url", length = 256)
-	private String imageUrl;
-
-	@Size(max = 20)
-	@Column(name = "activation_key", length = 20)
-	@JsonIgnore
-	private String activationKey;
-
-	@Size(max = 20)
-	@Column(name = "reset_key", length = 20)
-	@JsonIgnore
-	private String resetKey;
-
-	@Column(name = "reset_date")
-	private Instant resetDate = null;
-
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "SAR_USER_AUTHORITY", joinColumns = {
+	@JoinTable(name = "SAR_USER_AUTHORITY", schema = "SARBINI", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
 	private Set<Authority> authorities = new HashSet<>();

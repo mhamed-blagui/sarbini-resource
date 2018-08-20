@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sarbini.resource.model.ProductData;
+import com.sarbini.resource.domain.Product;
 import com.sarbini.resource.service.ProductService;
 
 @RestController
@@ -25,12 +25,12 @@ private final static Logger LOGGER = LoggerFactory.getLogger(ProductResource.cla
 	private ProductService productService;
 	
 	@RequestMapping(value = "/product/", method = GET)
-	public ResponseEntity<List<ProductData>> listAllOrders() {
-		List<ProductData> products = productService.findAllProducts();
+	public ResponseEntity<List<Product>> listAllOrders() {
+		List<Product> products = productService.findAllProducts();
 		if (products.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 			// You many decide to return HttpStatus.NOT_FOUND
 		}
-		return new ResponseEntity<List<ProductData>>(products, HttpStatus.OK);
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
 }

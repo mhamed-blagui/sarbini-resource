@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_AUTHORITY", schema = "SARBINI_APP")
+@Table(name = "SAR_AUTHORITY", schema = "SARBINI")
 @Getter
 @Setter
 public class Authority implements Serializable {

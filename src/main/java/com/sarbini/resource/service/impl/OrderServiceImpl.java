@@ -1,6 +1,5 @@
 package com.sarbini.resource.service.impl;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import com.sarbini.resource.domain.User;
 import com.sarbini.resource.enums.OrderStateEnum;
 import com.sarbini.resource.exception.TechnicalException;
 import com.sarbini.resource.model.NotificationData;
-import com.sarbini.resource.model.OrderData;
 import com.sarbini.resource.repository.OrderHistoryRepository;
 import com.sarbini.resource.repository.OrderRepository;
 import com.sarbini.resource.service.NotificationService;
@@ -37,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	private NotificationService notificationService;
 
 	@Override
-	public void createOrder(OrderData orderDTO) {
+	public void createOrder(Order orderDTO) {
 		// TODO Auto-generated method stub
 	}
 
@@ -70,15 +68,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderData> findAllOrders() {
-		List<OrderData> result = new ArrayList<>();
+	public List<Order> findAllOrders() {
 		List<Order> orders = orderRepository.findAll();
-		orders.forEach(order -> {
-			OrderData orderData = new OrderData();
-			orderData.buildOrderData(order);
-			result.add(orderData);
-		});
-		return result;
+		return orders;
 	}
 
 }

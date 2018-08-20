@@ -2,10 +2,10 @@ package com.sarbini.resource.service;
 
 import java.util.List;
 
-import com.sarbini.resource.model.ProductData;
+import com.sarbini.resource.domain.Product;
 
 public interface ProductService {
 
-	List<ProductData> findAllProducts();
+	List<Product> findAllProducts();
 
 }

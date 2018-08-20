@@ -28,7 +28,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_ORDER", schema = "SARBINI_APP")
+@Table(name = "SAR_ORDER", schema = "SARBINI")
 @Getter
 @Setter
 public class Order implements Serializable {
@@ -71,7 +71,7 @@ public class Order implements Serializable {
 	
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "SAR_ORDER_PRODUCT", joinColumns = {
+	@JoinTable(name = "SAR_ORDER_PRODUCT",  schema = "SARBINI", joinColumns = {
 			@JoinColumn(name = "order_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "product_id", referencedColumnName = "id") })
 	private Set<Product> products = new HashSet<>();

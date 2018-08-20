@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sarbini.resource.model.OrderData;
+import com.sarbini.resource.domain.Order;
 import com.sarbini.resource.service.OrderService;
 
 @RestController
@@ -26,13 +26,13 @@ public class OrderResource {
 	private OrderService orderService;
 	
 	@RequestMapping(value = "/order/", method = GET)
-	public ResponseEntity<List<OrderData>> listAllOrders() {
-		List<OrderData> orders = orderService.findAllOrders();
+	public ResponseEntity<List<Order>> listAllOrders() {
+		List<Order> orders = orderService.findAllOrders();
 		if (orders.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 			// You many decide to return HttpStatus.NOT_FOUND
 		}
-		return new ResponseEntity<List<OrderData>>(orders, HttpStatus.OK);
+		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/add",method = GET)
@@ -40,7 +40,7 @@ public class OrderResource {
 			@RequestParam(value = "description") String description) {
 		LOGGER.info("Going to add new order : " + name);
 		try {
-			OrderData orderDTO = null;
+			Order orderDTO = null;
 			orderService.createOrder(orderDTO);
 		} catch (Exception e) {
 			LOGGER.error("Error occured in create order : ", e);

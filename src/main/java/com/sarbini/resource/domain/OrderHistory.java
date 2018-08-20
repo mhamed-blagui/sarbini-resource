@@ -21,7 +21,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_ORDER_HISTORY", schema = "SARBINI_APP")
+@Table(name = "SAR_ORDER_HISTORY", schema = "SARBINI")
 @Getter
 @Setter
 public class OrderHistory implements Serializable {
