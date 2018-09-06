@@ -4,10 +4,6 @@ import com.sarbini.resource.enums.ExceptionsCodesEnum;
 
 public class TechnicalException extends SarbiniException {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1583017078694225249L;
 
 	public TechnicalException(String message, ExceptionsCodesEnum errorCode) {

@@ -1,6 +1,7 @@
 package com.sarbini.resource.rest.service;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.List;
 
@@ -9,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sarbini.resource.domain.Order;
@@ -35,16 +36,11 @@ public class OrderResource {
 		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/add",method = GET)
-	public void addNewOrder(@RequestParam(value = "name") String name,
-			@RequestParam(value = "description") String description) {
-		LOGGER.info("Going to add new order : " + name);
-		try {
-			Order orderDTO = null;
-			orderService.createOrder(orderDTO);
-		} catch (Exception e) {
-			LOGGER.error("Error occured in create order : ", e);
-		}
-		LOGGER.info("End adding order : " + name);
-	}
+	@RequestMapping(value = "/order/", method = POST)
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        if (orderService.findOrder(order.getId()) != null) {
+            throw new RuntimeException("Username already exist");
+        }
+        return new ResponseEntity<Order>(orderService.createOrder(order), HttpStatus.CREATED);
+    }
 }

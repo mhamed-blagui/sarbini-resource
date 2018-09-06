@@ -19,11 +19,11 @@ import com.sarbini.resource.service.ProductService;
 @RequestMapping("/api")
 public class ProductResource {
 
-private final static Logger LOGGER = LoggerFactory.getLogger(ProductResource.class);
-	
+	private final static Logger LOGGER = LoggerFactory.getLogger(ProductResource.class);
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@RequestMapping(value = "/product/", method = GET)
 	public ResponseEntity<List<Product>> listAllOrders() {
 		List<Product> products = productService.findAllProducts();

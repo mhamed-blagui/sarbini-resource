@@ -10,8 +10,4 @@ public class SarbiniResourceLauncher {
 		SpringApplication.run(SarbiniResourceLauncher.class, args);
 	}
 	
-//	@Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 }

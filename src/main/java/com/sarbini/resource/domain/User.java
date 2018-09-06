@@ -1,5 +1,7 @@
 package com.sarbini.resource.domain;
 
+import static com.sarbini.resource.constant.Constants.SARBINI_SCHEMA_NAME;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,7 +9,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,7 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_USER", schema = "SARBINI")
+@Table(name = "SAR_USER", schema = SARBINI_SCHEMA_NAME)
 @Getter
 @Setter
 public class User implements Serializable {
@@ -34,8 +35,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 4654003334858315829L;
 
 	@Id
-	@SequenceGenerator(name = "sequenceGenerator", schema = "SARBINI", sequenceName = "USER_SEQ"
-			+ "", initialValue = 5, allocationSize = 3)
+	@SequenceGenerator(name = "sequenceGenerator", schema = SARBINI_SCHEMA_NAME, sequenceName = "USER_SEQ")
 	@GeneratedValue(generator = "sequenceGenerator")
 	private Long id;
 

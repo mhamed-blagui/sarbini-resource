@@ -1,5 +1,6 @@
 package com.sarbini.resource.domain;
 
+import static com.sarbini.resource.constant.Constants.SARBINI_SCHEMA_NAME;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SAR_AUTHORITY", schema = "SARBINI")
+@Table(name = "SAR_AUTHORITY", schema = SARBINI_SCHEMA_NAME)
 @Getter
 @Setter
 public class Authority implements Serializable {

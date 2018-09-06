@@ -35,8 +35,8 @@ public class OrderServiceImpl implements OrderService {
 	private NotificationService notificationService;
 
 	@Override
-	public void createOrder(Order orderDTO) {
-		// TODO Auto-generated method stub
+	public Order createOrder(Order order) {
+		return orderRepository.save(order);
 	}
 
 	@Override
@@ -71,6 +71,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> findAllOrders() {
 		List<Order> orders = orderRepository.findAll();
 		return orders;
+	}
+
+	@Override
+	public Order findOrder(Long id) {
+		return orderRepository.findById(id).get();
 	}
 
 }

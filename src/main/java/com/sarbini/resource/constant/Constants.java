@@ -11,4 +11,6 @@ public final class Constants {
     public static final String SYSTEM_ACCOUNT = "system";
     public static final String ANONYMOUS_USER = "anonymoususer";
 
+    /** Global constants **/
+    public static final String SARBINI_SCHEMA_NAME = "SARBINI";
 }

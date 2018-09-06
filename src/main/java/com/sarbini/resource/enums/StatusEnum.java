@@ -1,6 +1,6 @@
 package com.sarbini.resource.enums;
 
-public enum OperationStatusEnum {
+public enum StatusEnum {
 
 	SUCCESS,
 	FAIL;

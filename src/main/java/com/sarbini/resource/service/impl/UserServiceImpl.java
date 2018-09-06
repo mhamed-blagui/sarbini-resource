@@ -14,7 +14,7 @@ import com.sarbini.resource.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -27,13 +27,13 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUsername(name).isPresent() ? userRepository.findByUsername(name).get(): null ;
 	}
 
-	public void saveUser(User user) {
+	public User saveUser(User user) {
 		user.setPassword("123456");
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 
-	public void updateUser(User user){
-		saveUser(user);
+	public User updateUser(User user){
+		return userRepository.save(user);
 	}
 
 	public void deleteUserById(Long id){
@@ -49,6 +49,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean isUserExist(User user) {
-		return findByUserName(user.getUsername()) != null;
+		return userRepository.findByUsername(user.getUsername()).isPresent();
 	}
 }

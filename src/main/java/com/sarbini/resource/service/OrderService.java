@@ -8,9 +8,11 @@ import com.sarbini.resource.exception.TechnicalException;
 
 public interface OrderService {
 
-	void createOrder(Order orderDTO);
+	Order createOrder(Order order);
 	
 	String acceptOrder(Long orderPid, User deliver) throws TechnicalException;
 
 	List<Order> findAllOrders();
+
+	Order findOrder(Long id);
 }
